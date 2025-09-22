@@ -8,7 +8,7 @@ use App\Http\Requests\RegisterRequest;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
