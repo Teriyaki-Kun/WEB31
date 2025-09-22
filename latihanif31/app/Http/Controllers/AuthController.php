@@ -70,6 +70,12 @@ class AuthController extends Controller
 
     public function logout(){
         try{
+            $request->user()->currentAccessToken()->delete();
+
+            return response()->json([
+                'messagge' => $e->getMessage(),
+                'data' => null
+            ],500);
 
         }catch(Exception $e){
 
