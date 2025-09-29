@@ -10,8 +10,9 @@ use App\Models\spots;
 
 use Exception;
 
-use Illuminate\Http\Response;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 class spotController extends Controller
@@ -169,6 +170,23 @@ class spotController extends Controller
                 'data' => null
             ],500);
         }
+    }
+
+    public function review(spots $spots){
+        try{
+            return Response::json([
+            'message' => "List Review",
+            'data' => $spots->reviews()->with([
+                'user:id,nama'
+            ])->get()
+        ],200);
+            
+        }catch(Exception $e){
+            return Response::json([
+                    'message' => $e->getMessage(),
+                    'data' => null
+                    ],500);
+            }
     }
 
 

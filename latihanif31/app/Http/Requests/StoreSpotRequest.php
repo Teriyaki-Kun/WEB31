@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreSpotRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreSpotRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -25,7 +26,7 @@ class StoreSpotRequest extends FormRequest
             'name' => 'required|string',
             'address' => 'required|string',
             'picture'=> 'required|image|image:jped,png,jpg,webp|max:2048',
-            'category' => 'required|array|min 1',
+            'category' => 'required|array|min:1',
             'category.*' => 'required|string'
         ];
     }
